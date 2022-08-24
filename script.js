@@ -10,7 +10,7 @@ const buttons = document.querySelectorAll(".game-box__buttons")
 
 const buttonIsClicked = (button) => button.forEach((x) => {
     x.addEventListener("click", () =>{
-        console.log("IT WORKS!");
+        x.innerText = 1
     })
 })
 

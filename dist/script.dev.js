@@ -13,7 +13,7 @@ var buttons = document.querySelectorAll(".game-box__buttons");
 var buttonIsClicked = function buttonIsClicked(button) {
   return button.forEach(function (x) {
     x.addEventListener("click", function () {
-      console.log("IT WORKS!");
+      x.innerText = 1;
     });
   });
 };
