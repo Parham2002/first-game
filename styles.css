@@ -25,6 +25,6 @@
   grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
 }
 .game-window .game-box .game-box__buttons {
-  border: 1px solid red;
+  border: 1px solid black;
   margin: 1px;
 }
