@@ -1,17 +1,20 @@
+const gameInfo = document.querySelector(".info-box")
 const gameBox = document.querySelector(".game-box")
-
-
 let code= ``
 let minesList = [];
-let buttonId= [];
-for (i=1; i<201; i++) {
-    buttonId.push(i)
-    code = code + `<button id="${i}" class="game-box__buttons">${i}</button>`
-}
-gameBox.innerHTML = code
-const buttons = document.querySelectorAll(".game-box__buttons")
 
-let mineChance = 40;
+
+const generateSquares= () => {
+    for (i=1; i<201; i++) {
+        code = code + `<button id="${i}" class="game-box__buttons"></button>`
+    }
+    gameBox.innerHTML = code
+}
+
+
+
+
+
 const mineField = (Chance) => {
     buttons.forEach((button) => {
         let percentage = Math.floor(Math.random() * 100)
@@ -55,13 +58,27 @@ const nearbyMines = (clickedBox) => {
     if (buttons[clickedBox.id- -9] <= buttons[199] && buttons[clickedBox.id- -9].innerHTML.includes("game-box__mines")) {
         numberOfMines += 1
     }
-    console.log(clickedBox.id);
-    console.log(buttons[clickedBox.id]);
     return numberOfMines
-
-    
-
-
 }
+
+const difficulty= 30;
+const winOrLose= 0;
+
+
+generateSquares()
+const buttons = document.querySelectorAll(".game-box__buttons")
+mineField(difficulty)
 buttonIsClicked(buttons)
-mineField(mineChance)
+
+const generateInfo = () => {
+    gameInfo.innerHTML = `
+    <div class="lhs">
+        <div class="info-box__mines">#ofMines: ${minesList.length} <img src='./Assets/Mine.jpg' width='20px'></img></div>
+        <div class="info-box__flags">Flags Left: <img src='./Assets/flag.png' width='20px'></img></div>
+        <div class="info-box__valid-squares">Valid Squares: </div>
+    </div>
+    <div class="rhs">
+        <div class="info-box__time">Time Elapsed: </div>
+    </div>`
+}
+generateInfo()

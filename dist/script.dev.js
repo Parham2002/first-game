@@ -1,18 +1,17 @@
 "use strict";
 
+var gameInfo = document.querySelector(".info-box");
 var gameBox = document.querySelector(".game-box");
 var code = "";
 var minesList = [];
-var buttonId = [];
 
-for (i = 1; i < 201; i++) {
-  buttonId.push(i);
-  code = code + "<button id=\"".concat(i, "\" class=\"game-box__buttons\">").concat(i, "</button>");
-}
+var generateSquares = function generateSquares() {
+  for (i = 1; i < 201; i++) {
+    code = code + "<button id=\"".concat(i, "\" class=\"game-box__buttons\"></button>");
+  }
 
-gameBox.innerHTML = code;
-var buttons = document.querySelectorAll(".game-box__buttons");
-var mineChance = 40;
+  gameBox.innerHTML = code;
+};
 
 var mineField = function mineField(Chance) {
   buttons.forEach(function (button) {
@@ -61,10 +60,18 @@ var nearbyMines = function nearbyMines(clickedBox) {
     numberOfMines += 1;
   }
 
-  console.log(clickedBox.id);
-  console.log(buttons[clickedBox.id]);
   return numberOfMines;
 };
 
+var difficulty = 30;
+var winOrLose = 0;
+generateSquares();
+var buttons = document.querySelectorAll(".game-box__buttons");
+mineField(difficulty);
 buttonIsClicked(buttons);
-mineField(mineChance);
+
+var generateInfo = function generateInfo() {
+  gameInfo.innerHTML = "\n    <div class=\"lhs\">\n        <div class=\"info-box__mines\">#ofMines: ".concat(minesList.length, " <img src='./Assets/Mine.jpg' width='20px'></img></div>\n        <div class=\"info-box__flags\">Flags Left: <img src='./Assets/flag.png' width='20px'></img></div>\n        <div class=\"info-box__valid-squares\">Valid Squares: </div>\n    </div>\n    <div class=\"rhs\">\n        <div class=\"info-box__time\">Time Elapsed: </div>\n    </div>");
+};
+
+generateInfo();

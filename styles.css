@@ -17,6 +17,9 @@
 }
 .game-window .info-box {
   border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .game-window .game-box {
   border: 2px solid black;
