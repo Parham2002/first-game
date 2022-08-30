@@ -30,4 +30,14 @@
 .game-window .game-box .game-box__buttons {
   border: 1px solid black;
   margin: 1px;
+  cursor: pointer;
+}
+.game-window .notif-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  color: red;
+  border: 2px solid black;
+  padding: 10px;
 }

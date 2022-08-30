@@ -2,6 +2,7 @@
 
 var gameInfo = document.querySelector(".info-box");
 var gameBox = document.querySelector(".game-box");
+var gameWindow = document.querySelector(".game-Window");
 var code = "";
 var minesList = [];
 
@@ -18,7 +19,7 @@ var mineField = function mineField(Chance) {
     var percentage = Math.floor(Math.random() * 100);
 
     if (percentage <= Chance) {
-      button.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
+      button.innerHTML = "<img class='game-box__mines'></img>";
       minesList.push(button);
     }
   });
@@ -28,7 +29,7 @@ var buttonIsClicked = function buttonIsClicked(button) {
   return button.forEach(function (box) {
     box.addEventListener("click", function () {
       if (box.innerHTML.includes("game-box__mines")) {
-        alert("YOU FAILED");
+        hasWon(false);
       } else {
         box.innerText = nearbyMines(box);
       }
@@ -64,7 +65,21 @@ var nearbyMines = function nearbyMines(clickedBox) {
 };
 
 var difficulty = 30;
-var winOrLose = 0;
+
+var hasWon = function hasWon(_boolean) {
+  if (_boolean) {
+    minesList.forEach(function (mine) {
+      mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
+    });
+    gameWindow.innerHTML += "\n            <div class=\"notif-container\">\n                <h2>YOU WON</h2>\n                <div class=\"notif-buttons\">\n                    <button class=\"notif-buttons__item1\">Try Again</button>\n                </div>\n            </div>";
+  } else {
+    minesList.forEach(function (mine) {
+      mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
+    });
+    gameWindow.innerHTML += "\n            <div class=\"notif-container\">\n                <h2>BOOM! Git gud.</h2>\n                <div class=\"notif-buttons\">\n                    <button class=\"notif-buttons__item1\">Try Again</button>\n                </div>\n            </div>";
+  }
+};
+
 generateSquares();
 var buttons = document.querySelectorAll(".game-box__buttons");
 mineField(difficulty);

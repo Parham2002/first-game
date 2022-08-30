@@ -1,5 +1,6 @@
 const gameInfo = document.querySelector(".info-box")
 const gameBox = document.querySelector(".game-box")
+const gameWindow = document.querySelector(".game-Window")
 let code= ``
 let minesList = [];
 
@@ -12,14 +13,11 @@ const generateSquares= () => {
 }
 
 
-
-
-
 const mineField = (Chance) => {
     buttons.forEach((button) => {
         let percentage = Math.floor(Math.random() * 100)
         if (percentage <= Chance) {
-            button.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
+            button.innerHTML = "<img class='game-box__mines'></img>"
             minesList.push(button)
         }
     })
@@ -30,7 +28,7 @@ const mineField = (Chance) => {
 const buttonIsClicked = (button) => button.forEach((box) => {
     box.addEventListener("click", () =>{
        if (box.innerHTML.includes("game-box__mines")) {
-        alert("YOU FAILED")
+        hasWon(false)
        } else {
         box.innerText = nearbyMines(box)
        }
@@ -62,7 +60,32 @@ const nearbyMines = (clickedBox) => {
 }
 
 const difficulty= 30;
-const winOrLose= 0;
+const hasWon = (boolean) => {
+    if (boolean) {
+        minesList.forEach((mine) => {
+            mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
+        })
+        gameWindow.innerHTML += `
+            <div class="notif-container">
+                <h2>YOU WON</h2>
+                <div class="notif-buttons">
+                    <button class="notif-buttons__item1">Try Again</button>
+                </div>
+            </div>`
+    } else {
+        minesList.forEach((mine) => {
+            mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
+        })
+        gameWindow.innerHTML += `
+            <div class="notif-container">
+                <h2>BOOM! Git gud.</h2>
+                <div class="notif-buttons">
+                    <button class="notif-buttons__item1">Try Again</button>
+                </div>
+            </div>`
+    }
+
+};
 
 
 generateSquares()
