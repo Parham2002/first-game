@@ -37,7 +37,7 @@ const buttonIsClicked = (button) => button.forEach((box) => {
             hasWon(false)
        } else if (validSquares == 0) {
             hasWon(true)
-       } else {
+       } else if (box.innerText == "") {
             box.innerText = nearbyMines(box)
             validSquares--;
             
