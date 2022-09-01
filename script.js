@@ -6,16 +6,18 @@ let minesList = [];
 let validSquares = 0;
 const difficulty= 40;
 
-
+// Function for generating lots of squares
 const generateSquares= () => {
     for (i=1; i<201; i++) {
+        // Give all generating buttons an id
         code = code + `<button id="${i}" class="game-box__buttons"></button>`
         validSquares += 1;
     }
+    // Insert the buttons into the html file
     gameBox.innerHTML = code
 }
 
-
+// Function to randomly select squares and tag them as a mine
 const mineField = (Chance) => {
     buttons.forEach((button) => {
         let percentage = Math.floor(Math.random() * 100)
@@ -28,7 +30,7 @@ const mineField = (Chance) => {
 }
 
 
-
+// Function for interacting with squares
 const buttonIsClicked = (button) => button.forEach((box) => {
     box.addEventListener("click", () =>{
        if (box.innerHTML.includes("game-box__mines")) {
@@ -38,12 +40,13 @@ const buttonIsClicked = (button) => button.forEach((box) => {
        } else {
             box.innerText = nearbyMines(box)
             validSquares--;
+            
        }
        generateInfo()
     })
 })
 
-
+// Function for checking the next horizontal and vertical neighbouring squares for mines
 const nearbyMines = (clickedBox) => {
     const isRightEdge = (clickedBox.id % 10 == 0)
     const isLeftEdge = (clickedBox.id % 10 == 1)
@@ -67,6 +70,7 @@ const nearbyMines = (clickedBox) => {
     return numberOfMines
 }
 
+// Function for win/lose conditions
 const hasWon = (boolean) => {
     if (boolean) {
         minesList.forEach((mine) => {
@@ -92,13 +96,13 @@ const hasWon = (boolean) => {
     const tryAgain = document.querySelector(".notif-buttons__item1")
     const notifContainer = document.querySelector(".notif-container")
     tryAgain.addEventListener("click", () => {
-        
+        notifContainer.remove()
     })
 
 };
 
 
-
+// Function to display info in the info-box of the game
 const generateInfo = () => {
     gameInfo.innerHTML = `
     <div class="lhs">
@@ -134,7 +138,7 @@ const generateInfo = () => {
     // })
 }
 
-
+// Calling functions in order
 generateSquares()
 let buttons = document.querySelectorAll(".game-box__buttons")
 mineField(difficulty)

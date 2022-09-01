@@ -6,16 +6,19 @@ var gameWindow = document.querySelector(".game-Window");
 var code = "";
 var minesList = [];
 var validSquares = 0;
-var difficulty = 40;
+var difficulty = 40; // Function for generating lots of squares
 
 var generateSquares = function generateSquares() {
   for (i = 1; i < 201; i++) {
+    // Give all generating buttons an id
     code = code + "<button id=\"".concat(i, "\" class=\"game-box__buttons\"></button>");
     validSquares += 1;
-  }
+  } // Insert the buttons into the html file
+
 
   gameBox.innerHTML = code;
-};
+}; // Function to randomly select squares and tag them as a mine
+
 
 var mineField = function mineField(Chance) {
   buttons.forEach(function (button) {
@@ -27,7 +30,8 @@ var mineField = function mineField(Chance) {
     }
   });
   validSquares -= minesList.length;
-};
+}; // Function for interacting with squares
+
 
 var buttonIsClicked = function buttonIsClicked(button) {
   return button.forEach(function (box) {
@@ -44,7 +48,8 @@ var buttonIsClicked = function buttonIsClicked(button) {
       generateInfo();
     });
   });
-};
+}; // Function for checking the next horizontal and vertical neighbouring squares for mines
+
 
 var nearbyMines = function nearbyMines(clickedBox) {
   var isRightEdge = clickedBox.id % 10 == 0;
@@ -71,7 +76,8 @@ var nearbyMines = function nearbyMines(clickedBox) {
   }
 
   return numberOfMines;
-};
+}; // Function for win/lose conditions
+
 
 var hasWon = function hasWon(_boolean) {
   if (_boolean) {
@@ -90,12 +96,9 @@ var hasWon = function hasWon(_boolean) {
   var notifContainer = document.querySelector(".notif-container");
   tryAgain.addEventListener("click", function () {
     notifContainer.remove();
-    code = "";
-    gameBox.innerHTML = "";
-    buttons = document.querySelectorAll(".game-box__buttons");
-    buttonIsClicked(buttons);
   });
-};
+}; // Function to display info in the info-box of the game
+
 
 var generateInfo = function generateInfo() {
   gameInfo.innerHTML = "\n    <div class=\"lhs\">\n        <div class=\"lhs__mines\">#ofMines: ".concat(minesList.length, " <img src='./Assets/Mine.jpg' width='20px'></img></div>\n        <div class=\"lhs__flags\">Flags Left: coming soon</div>\n        <div class=\"lhs__valid-squares\">Valid Squares left: ").concat(validSquares, "</div>\n    </div>\n    <div class=\"rhs\">\n        <div class=\"rhs__guide\"><button>?</button></div>\n        <div class=\"rhs__time\">Time Elapsed: feature coming soon</div>\n    </div>"); // const showGuide = document.querySelector(".rhs__guide > button")
@@ -119,17 +122,8 @@ var generateInfo = function generateInfo() {
   //         console.log(closeGuide);
   //     })
   // })
-};
+}; // Calling functions in order
 
-var resetGame = function resetGame() {
-  code = "";
-  minesList = [];
-  buttons = [];
-  generateSquares();
-  mineField(difficulty);
-  buttonIsClicked(buttons);
-  generateInfo();
-};
 
 generateSquares();
 var buttons = document.querySelectorAll(".game-box__buttons");
