@@ -80,11 +80,12 @@ var nearbyMines = function nearbyMines(clickedBox) {
 
 
 var hasWon = function hasWon(_boolean) {
+  // Reveal location of all mines
   if (_boolean) {
     minesList.forEach(function (mine) {
       mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
     });
-    gameWindow.innerHTML = "\n            <div class=\"notif-container\">\n                <h2>YOU WON!</h2>\n                <img src=\"./assets/Victory.jpg\" width=\"300px\">\n            </div>";
+    gameWindow.innerHTML = "\n            <div class=\"notif-container\">\n                <h2>YOU WON!</h2>\n                <img src=\"./assets/Victory.jpg\" width=\"300px\">\n            </div>\n            <div class=\"notif-buttons\">\n                <button class=\"notif-buttons__item1\">Try Again</button>\n            </div>";
   } else {
     minesList.forEach(function (mine) {
       mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";

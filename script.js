@@ -72,6 +72,7 @@ const nearbyMines = (clickedBox) => {
 
 // Function for win/lose conditions
 const hasWon = (boolean) => {
+    // Reveal location of all mines
     if (boolean) {
         minesList.forEach((mine) => {
             mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
@@ -80,6 +81,9 @@ const hasWon = (boolean) => {
             <div class="notif-container">
                 <h2>YOU WON!</h2>
                 <img src="./assets/Victory.jpg" width="300px">
+            </div>
+            <div class="notif-buttons">
+                <button class="notif-buttons__item1">Try Again</button>
             </div>`
     } else {
         minesList.forEach((mine) => {
