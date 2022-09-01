@@ -39,6 +39,7 @@ var buttonIsClicked = function buttonIsClicked(button) {
       if (box.innerHTML.includes("game-box__mines")) {
         hasWon(false);
       } else if (validSquares == 0) {
+        // Change this part if you want to cheat
         hasWon(true);
       } else if (box.innerText == "") {
         box.innerText = nearbyMines(box);
@@ -85,12 +86,12 @@ var hasWon = function hasWon(_boolean) {
     minesList.forEach(function (mine) {
       mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
     });
-    gameWindow.innerHTML = "\n            <div class=\"notif-container\">\n                <h2>YOU WON!</h2>\n                <img src=\"./assets/Victory.jpg\" width=\"300px\">\n            </div>\n            <div class=\"notif-buttons\">\n                <button class=\"notif-buttons__item1\">Try Again</button>\n            </div>";
+    gameWindow.innerHTML = "\n            <div class=\"notif-container-win\">\n                <h2>YOU WON!</h2>\n                <img src=\"./assets/Victory.jpg\" width=\"300px\">\n            </div>\n            <div class=\"notif-buttons-win\">\n                <button class=\"notif-buttons__item1\">Try Again</button>\n            </div>";
   } else {
     minesList.forEach(function (mine) {
       mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>";
     });
-    gameWindow.innerHTML += "\n            <div class=\"notif-container\">\n                <h2>BOOM! Git gud.</h2>\n                <div class=\"notif-buttons\">\n                    <button class=\"notif-buttons__item1\">Try Again</button>\n                </div>\n            </div>";
+    gameWindow.innerHTML += "\n            <div class=\"notif-container-lose\">\n                <h2>BOOM! Git gud.</h2>\n                <div class=\"notif-buttons-lose\">\n                    <button class=\"notif-buttons__item1\">Try Again</button>\n                </div>\n            </div>";
   }
 
   var tryAgain = document.querySelector(".notif-buttons__item1");

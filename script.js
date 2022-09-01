@@ -35,7 +35,7 @@ const buttonIsClicked = (button) => button.forEach((box) => {
     box.addEventListener("click", () =>{
        if (box.innerHTML.includes("game-box__mines")) {
             hasWon(false)
-       } else if (validSquares == 0) {
+       } else if (validSquares == 0) { // Change this part if you want to cheat
             hasWon(true)
        } else if (box.innerText == "") {
             box.innerText = nearbyMines(box)
@@ -78,11 +78,11 @@ const hasWon = (boolean) => {
             mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
         })
         gameWindow.innerHTML = `
-            <div class="notif-container">
+            <div class="notif-container-win">
                 <h2>YOU WON!</h2>
                 <img src="./assets/Victory.jpg" width="300px">
             </div>
-            <div class="notif-buttons">
+            <div class="notif-buttons-win">
                 <button class="notif-buttons__item1">Try Again</button>
             </div>`
     } else {
@@ -90,9 +90,9 @@ const hasWon = (boolean) => {
             mine.innerHTML = "<img class='game-box__mines' src='./Assets/Mine.jpg' width='20px'></img>"
         })
         gameWindow.innerHTML += `
-            <div class="notif-container">
+            <div class="notif-container-lose">
                 <h2>BOOM! Git gud.</h2>
-                <div class="notif-buttons">
+                <div class="notif-buttons-lose">
                     <button class="notif-buttons__item1">Try Again</button>
                 </div>
             </div>`;
