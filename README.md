@@ -13,4 +13,17 @@ If I had more time, I would have:
 7- Added pay-to-win mechanics to boost profits
 
 
-I used a multitude of tools and methods to do this project, including but not limited to: Javascript, HTML, CSS, SCSS, DOM, functions, and arrays.
+Technologies and methods used:
+- HTML
+- CSS
+- SCSS
+- BEM
+- Git 
+- Git Pages
+- DOM
+- Functions
+- Arrays
+
+
+![Screenshot (4)](https://user-images.githubusercontent.com/98832011/203287060-40a718c6-b74d-435a-bddc-9bd34e869b8a.png)
+![Screenshot (5)](https://user-images.githubusercontent.com/98832011/203287078-c0d65d0e-0eb8-438a-a934-b7640114e82d.png)
